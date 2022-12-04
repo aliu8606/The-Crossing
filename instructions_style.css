@@ -1,0 +1,54 @@
+body, html
+{
+    margin: 1%;
+    background-color: black;
+    color: white;
+    background-size: 100;
+}
+
+header
+{
+    margin-bottom: 1%;    
+}
+
+nav
+{
+    background-color: white;
+    padding: 10pt;
+}
+
+a
+{
+    color: black;
+    text-decoration: underline;
+    margin-right: 5pt;
+}
+
+a:hover
+{
+    color:darkred;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.strikethrough
+{
+    text-decoration: line-through;
+}
+
+aside
+{
+    background-color: gray;
+    color: black;
+    padding: 2%;
+    margin: 1%;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+div
+{
+    margin: 1%;
+}

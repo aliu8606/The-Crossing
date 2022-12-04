@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Crossing</title>
+        <link rel = "stylesheet" href = "game_style.css"/>
+        <script src = "game_logic.js"></script>
+        <script>
+            //order goes hovercar, human1, blom1, human2, blom2...
+            const OFF_PRECIPICE_ALL = new Array(); 
+            const ON_PRECIPICE_ALL = new Array(); 
+
+            //off human, off blom, on human, on blom
+            let COUNT_ARR = [0, 0, 3, 3];
+
+            let currCarArr = new Array();
+            let removedListeners = new Array();
+            
+            function initialize()
+            {
+                OFF_PRECIPICE_ALL.push(document.getElementById("hovercarf"));
+                ON_PRECIPICE_ALL.push(document.getElementById("hovercarn"));
+                OFF_PRECIPICE_ALL[0].addEventListener("click", function() {clickCar()});
+                ON_PRECIPICE_ALL[0].addEventListener("click", function() {clickCar()});
+
+                for (let i = 1; i < 4; i++) 
+                {
+                    let humanStr = "human" + i;
+                    let blomStr = "blom" + i;
+
+                    OFF_PRECIPICE_ALL.push(document.getElementById(humanStr + "f"));
+                    OFF_PRECIPICE_ALL.push(document.getElementById(blomStr + "f"));
+                    ON_PRECIPICE_ALL.push(document.getElementById(humanStr + "n"));
+                    ON_PRECIPICE_ALL.push(document.getElementById(blomStr + "n"));
+                }
+
+                for (let j = 1; j < OFF_PRECIPICE_ALL.length; j++) 
+                {
+                    OFF_PRECIPICE_ALL[j].addEventListener("click", function() {clickAvatar(OFF_PRECIPICE_ALL[j])});
+                    ON_PRECIPICE_ALL[j].addEventListener("click", function() {clickAvatar(ON_PRECIPICE_ALL[j])});
+                }
+
+                for (let i = 0; i < OFF_PRECIPICE_ALL.length; i++)
+                {
+                    removedListeners.push(OFF_PRECIPICE_ALL[i]);
+                    changeVis(OFF_PRECIPICE_ALL[i], true);
+                    changeVis(ON_PRECIPICE_ALL[i], false);
+                }
+
+                display();
+            }
+
+            function display()
+            {
+                logOut.innerHTML = log;
+                logOut.scrollTop = logOut.scrollHeight;
+            }
+        </script>
+    </head>
+
+    <body onload = "initialize();">
+        <header>
+            <h2>Welcome Agent.</h2>
+            <nav> 
+                <a href = "instructions.html">Instructions Page</a>
+                <a onclick = "location.reload();">Reset Mission</a>
+            </nav>
+        </header>
+
+        
+        <div id = "board">
+            <div class = "sideboard" id = "offprecipice">
+                <p>Off precipice</p>
+                <span>
+                    <img class = "avatars"  id = "hovercarf" src = "hover_car.png"/>
+                </span>
+                <br/>
+                <span>
+                    <img class = "avatars"  id = "human1f" src = "human.png"/>
+                    <img class = "avatars"  id = "human2f" src = "human.png"/>
+                    <img class = "avatars"  id = "human3f" src = "human.png"/>
+                </span>
+                <br/>
+                <span>
+                    <img class = "avatars"  id = "blom1f" src = "blomfargle.png"/>
+                    <img class = "avatars"  id = "blom2f" src = "blomfargle.png"/>
+                    <img class = "avatars"  id = "blom3f" src = "blomfargle.png"/>
+                </span>
+            </div>
+ 
+            <div id = "background"></div>
+
+            <div class = "sideboard" id = "onprecipice">
+                <p>On precipice</p>
+                <span>
+                    <img class = "avatars"  id = "hovercarn" src = "hover_car.png"/>
+                </span>
+                <br/>
+                <span>
+                    <img class = "avatars"  id = "human1n" src = "human.png"/>
+                    <img class = "avatars"  id = "human2n" src = "human.png"/>
+                    <img class = "avatars"  id = "human3n" src = "human.png"/>
+                </span>
+                <br/>
+                <span>
+                    <img class = "avatars"  id = "blom1n" src = "blomfargle.png"/>
+                    <img class = "avatars"  id = "blom2n" src = "blomfargle.png"/>
+                    <img class = "avatars"  id = "blom3n" src = "blomfargle.png"/>
+                </span>
+            </div>
+        </div>
+        <div id = "log"></div>
+        <script>
+            const logOut = document.getElementById("log");
+            let log = "Mission starts. <br><br>";
+
+            const board = document.getElementById("background");
+        </script>
+    </body>
+</html>
